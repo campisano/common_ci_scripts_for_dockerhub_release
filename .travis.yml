@@ -1,7 +1,6 @@
-language: cpp
-compiler: gcc
-os: linux
 dist: xenial
+language: minimal
+os: linux
 
 addons:
   apt:
