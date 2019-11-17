@@ -20,7 +20,7 @@ env:
 cache:
   apt
   directories:
-    - "$HOME/.build/"
+    - "$TRAVIS_BUILD_DIR/.build/"
 
 jobs:
   include:
