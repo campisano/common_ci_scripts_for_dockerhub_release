@@ -15,10 +15,10 @@ jobs:
     - stage: "Build"
       script:
         - sudo apt-get -q update
-        - sudo apt-get -q -y --no-upgrade install g++-6 make cmake libssl-dev libcurl4-openssl-dev
+        - sudo apt-get -q -y install g++-6 make cmake libssl-dev libcurl4-openssl-dev
         - make -e release
     - stage: "Test"
       script:
         - sudo apt-get -q update
-        - sudo apt-get -q -y --no-upgrade install libssl1.0.0 libcurl3
+        - sudo apt-get -q -y install libssl1.0.0 libcurl3
         - ./run.sh release test
