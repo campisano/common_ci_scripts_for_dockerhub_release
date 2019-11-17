@@ -1,7 +1,6 @@
 dist: xenial
 language: minimal
 os: linux
-sudo: true
 
 addons:
   apt:
@@ -14,7 +13,6 @@ addons:
       - cmake
       - libssl-dev
       - libcurl4-openssl-dev
-
 env:
   - MATRIX_EVAL="CC=gcc-6 && CXX=g++-6"
 
@@ -26,7 +24,8 @@ jobs:
   include:
     - stage: "Build"
       script:
-        - make -e release
+        - make -e debug
     - stage: "Test"
       script:
-        - ./run.sh release test
+        - ./run.sh debug test
+
