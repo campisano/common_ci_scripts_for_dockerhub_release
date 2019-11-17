@@ -3,6 +3,18 @@ language: minimal
 os: linux
 sudo: true
 
+addons:
+  apt:
+    update: true
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - g++-6
+      - make
+      - cmake
+      - libssl-dev
+      - libcurl4-openssl-dev
+
 env:
   - MATRIX_EVAL="CC=gcc-6 && CXX=g++-6"
 
@@ -14,11 +26,7 @@ jobs:
   include:
     - stage: "Build"
       script:
-        - sudo apt-get -q update
-        - sudo apt-get -q -y install g++-6 make cmake libssl-dev libcurl4-openssl-dev
-        - make -e debug
+        - make -e release
     - stage: "Test"
       script:
-        - sudo apt-get -q update
-        - sudo apt-get -q -y install libssl1.0.0 libcurl3
-        - ./run.sh debug test
+        - ./run.sh release test
