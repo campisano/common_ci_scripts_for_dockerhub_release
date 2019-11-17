@@ -1,7 +1,7 @@
 language: cpp
 compiler: gcc
 os: linux
-dist: trusty
+dist: xenial
 
 addons:
   apt:
@@ -14,12 +14,13 @@ addons:
       - cmake
       - libssl-dev
       - libcurl4-openssl-dev
+env:
+  - MATRIX_EVAL="CC=gcc-6 && CXX=g++-6"
 
 jobs:
   include:
     - stage: "Build"
       script:
-        - export CXX="g++-6"
         - make -e debug
     - stage: "Test"
       script:
