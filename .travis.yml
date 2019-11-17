@@ -8,7 +8,6 @@ env:
 
 cache:
   directories:
-    - "/var/cache/apt/"
     - "$TRAVIS_BUILD_DIR/build/"
 
 jobs:
@@ -17,9 +16,9 @@ jobs:
       script:
         - sudo apt-get -qq -y update
         - sudo apt-get -qq -y install g++-6 make cmake libssl-dev libcurl4-openssl-dev
-        - make -e debug
+        - make -e release
     - stage: "Test"
       script:
         - sudo apt-get -qq -y update
-        - suco apt-get -qq -y install libssl libcurl4-openssl
-        - ./run.sh debug test
+        - sudo apt-get -qq -y install libssl libcurl4-openssl
+        - ./run.sh release test
