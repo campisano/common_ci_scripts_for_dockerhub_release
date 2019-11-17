@@ -2,17 +2,6 @@ dist: xenial
 language: minimal
 os: linux
 
-addons:
-  apt:
-    update: true
-    sources:
-      - ubuntu-toolchain-r-test
-    packages:
-      - g++-6
-      - make
-      - cmake
-      - libssl-dev
-      - libcurl4-openssl-dev
 env:
   - MATRIX_EVAL="CC=gcc-6 && CXX=g++-6"
 
@@ -24,7 +13,11 @@ jobs:
   include:
     - stage: "Build"
       script:
+        - apt-get -qq -y update
+        - apt-get -qq -y install g++-6 make cmake libssl-dev libcurl4-openssl-dev
         - make -e debug
     - stage: "Test"
       script:
+        - apt-get -qq -y update
+        - apt-get -qq -y install libssl libcurl4-openssl
         - ./run.sh debug test
