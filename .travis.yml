@@ -4,11 +4,26 @@ os: linux
 sudo: false
 services: docker
 
-jobs:
-  include:
-    - stage: "Build and Test"
-      install: skip
-      script:
-        - docker pull debian:stretch-slim
-        - docker run --mount type=bind,source="$(pwd)",target=/repository debian:stretch-slim /bin/bash -c 'cd /repository; ./ci/build.sh'
-        - docker run --mount type=bind,source="$(pwd)",target=/repository debian:stretch-slim /bin/bash -c 'cd /repository; ./ci/test.sh'
+stages:
+  - name: "Test"
+    install: skip
+    script:
+      - docker pull debian:stretch-slim
+      - docker run --mount type=bind,source="$(pwd)",target=/repository debian:stretch-slim /bin/bash -c 'cd /repository; ./ci/build.sh'
+      - docker run --mount type=bind,source="$(pwd)",target=/repository debian:stretch-slim /bin/bash -c 'cd /repository; ./ci/test.sh'
+  - name: "Deliver"
+    if: branch = master
+    install: skip
+    script:
+      # retrieve tag
+      # - export RELEASE_TAG=$((cat VERSION))
+      # push new tag, locking version
+      # - git tag ${RELEASE_TAG} && git push origin tag ${RELEASE_TAG}
+      # build docker image
+      - docker pull debian:stretch-slim
+      - docker run --mount type=bind,source="$(pwd)",target=/repository debian:stretch-slim /bin/bash -c 'cd /repository; ./ci/build.sh'
+      - docker build -t campisano/public:test-1 -f ci/docker/Dockerfile .
+      # push image tags
+      # - docker push ${DOCKER_IMG_NAME}:${RELEASE_TAG}
+      # - docker push ${DOCKER)IMG_NAME}:${PROJECT_NAME}-latest
+      # if error, remove remote new tag, free version
