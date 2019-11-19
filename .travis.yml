@@ -3,8 +3,12 @@ language: minimal
 os: linux
 sudo: false
 services: docker
-git.clone: false
-install: skip
-script:
-  - docker pull debian:stretch-slim
-  - docker run --mount type=bind,source="$(pwd)/ci",target=/ci debian:stretch-slim /bin/bash -c 'cd /ci; /ci/test.sh'
+
+jobs:
+  include:
+    - stage: "Build and Test"
+      install: skip
+      script:
+        - docker pull debian:stretch-slim
+        - docker run --mount type=bind,source="$(pwd)",target=/repository debian:stretch-slim /bin/bash -c 'cd /repository; ./ci/build.sh'
+        - docker run --mount type=bind,source="$(pwd)",target=/repository debian:stretch-slim /bin/bash -c 'cd /repository; ./ci/test.sh'
