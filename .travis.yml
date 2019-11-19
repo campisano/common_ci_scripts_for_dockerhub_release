@@ -1,29 +1,10 @@
 dist: xenial
 language: minimal
 os: linux
-sudo: true
-
-env:
-  - MATRIX_EVAL="CC=gcc-6 && CXX=g++-6"
-
-cache:
-  directories:
-    - /var/cache/apt
-    - build
-
-jobs:
-  include:
-    - stage: "Build"
-      install:
-        - sudo apt-get -q update
-        - sudo apt-get -q -y install g++-6 make cmake libssl-dev libcurl4-openssl-dev
-      script:
-        - test -d build && rm -rf build
-        - make -e release
-    - stage: "Test"
-      install:
-        - sudo apt-get -q update
-        - sudo apt-get -q -y install libssl1.0.0 libcurl3
-      script:
-        - ./run.sh release test
-        - test -d build && rm -rf build
+sudo: false
+services: docker
+git.clone: false
+install: skip
+script:
+  - docker pull debian:stretch-slim
+  - docker run --mount type=bind,source="$(pwd)/ci",target=/ci debian:stretch-slim /bin/bash -c 'cd /ci; /ci/test.sh'
