@@ -18,8 +18,8 @@ jobs:
       install: skip
       script:
         # vars
-        - export PROJECT_NAME=$((./ci/get_project_name.sh))
-        - export PROJECT_VERSION=$((./ci/get_project_version.sh))
+        - export PROJECT_NAME=$(./ci/get_project_name.sh)
+        - export PROJECT_VERSION=$(./ci/get_project_version.sh)
         - export RELEASE_TAG="${PROJECT_NAME}-${PROJECT_VERSION}"
         # grant docker login
         - docker login --username "${DOCKER_USERNAME}" --password "${DOCKER_TOKEN}"
