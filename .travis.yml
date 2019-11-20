@@ -7,6 +7,7 @@ services: docker
 jobs:
   include:
     - stage: "Test"
+      if: branch != master
       install: skip
       script:
         - docker pull debian:stretch-slim
@@ -16,15 +17,18 @@ jobs:
       if: branch = master
       install: skip
       script:
+        # grant docker login
+        - docker login --username "${DOCKER_USERNAME}" "${DOCKER_TOKEN}"
         # retrieve tag
         # - export RELEASE_TAG=$((cat VERSION))
-        # push new tag, locking version
+        # push new tag, locking version and grant git write access
         # - git tag ${RELEASE_TAG} && git push origin tag ${RELEASE_TAG}
         # build docker image
         - docker pull debian:stretch-slim
         - docker run --mount type=bind,source="$(pwd)",target=/repository debian:stretch-slim /bin/bash -c 'cd /repository; ./ci/build.sh'
-        - docker build -t campisano/public:test-1 -f ci/docker/Dockerfile .
+        - docker run --mount type=bind,source="$(pwd)",target=/repository debian:stretch-slim /bin/bash -c 'cd /repository; ./ci/test.sh'
+        - docker build -t ${DOCKER_REPOSITORY}:${PROJECT_NAME}-latest -f ci/docker/Dockerfile .
         # push image tags
         # - docker push ${DOCKER_IMG_NAME}:${RELEASE_TAG}
-        # - docker push ${DOCKER)IMG_NAME}:${PROJECT_NAME}-latest
+        - docker push ${DOCKER_REPOSITORY}:${PROJECT_NAME}-latest
         # if error, remove remote new tag, free version
