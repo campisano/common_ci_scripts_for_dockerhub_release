@@ -4,6 +4,7 @@ os: linux
 services: docker
 git:
   depth: 1
+if: tag IS blank
 
 jobs:
   include:
