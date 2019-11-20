@@ -21,6 +21,21 @@ This project show how to setup a pipeline using travis-ci to:
     - docker repository (dockerhub) push access
     - git remote (github) push access
 
-### Sample travis-ci configuration for env vars
+
+
+## Screenshots
+
+
+* travis-ci env vars configs
 
 ![Alt text](/doc/README.md/travisci-config.png?raw=true "travis-ci env vars")
+
+
+* travis-ci build
+
+![Alt text](/doc/README.md/travisci-build.png?raw=true "travis-ci build")
+
+
+* dockerhub images
+
+![Alt text](/doc/README.md/dockerhub-images.png?raw=true "dockerhub images")
