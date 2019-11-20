@@ -31,6 +31,6 @@ jobs:
         - docker run --mount type=bind,source="$(pwd)",target=/repository debian:stretch-slim /bin/bash -c 'cd /repository; ./ci/test.sh'
         - docker build -t "${DOCKER_REPOSITORY}:${RELEASE_TAG}" -f ci/docker/Dockerfile .
         # push image tags
-        - docker push "${DOCKER_IMG_NAME}:${RELEASE_TAG}"
+        - docker push "${DOCKER_REPOSITORY}:${RELEASE_TAG}"
         - docker push "${DOCKER_REPOSITORY}:${PROJECT_NAME}-latest"
         # if error, remove remote new tag, free version
