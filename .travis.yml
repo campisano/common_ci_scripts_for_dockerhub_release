@@ -32,5 +32,6 @@ jobs:
         - docker build -t "${DOCKER_REPOSITORY}:${RELEASE_TAG}" -f ci/docker/Dockerfile .
         # push image tags
         - docker push "${DOCKER_REPOSITORY}:${RELEASE_TAG}"
+        - docker tag "${DOCKER_REPOSITORY}:${RELEASE_TAG}" "${DOCKER_REPOSITORY}:${PROJECT_NAME}-latest"
         - docker push "${DOCKER_REPOSITORY}:${PROJECT_NAME}-latest"
         # if error, remove remote new tag, free version
