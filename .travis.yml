@@ -1,9 +1,9 @@
 dist: xenial
-language: minimal
+language: shell
 os: linux
-sudo: false
 services: docker
-git.depth: 1
+git:
+  depth: 1
 
 jobs:
   include:
