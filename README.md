@@ -31,9 +31,9 @@ This project show how to setup a pipeline using travis-ci to:
 ![Alt text](/doc/README.md/travisci-config.png?raw=true "travis-ci env vars")
 
 
-* travis-ci build
+* travis-ci builds
 
-![Alt text](/doc/README.md/travisci-build.png?raw=true "travis-ci build")
+![Alt text](/doc/README.md/travisci-builds.png?raw=true "travis-ci builds")
 
 
 * dockerhub images
