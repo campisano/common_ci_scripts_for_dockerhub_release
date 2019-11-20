@@ -2,10 +2,10 @@
 [ci_link]: https://travis-ci.org/campisano/test_travisci_dockerhub_release
 [ci_img]: https://travis-ci.org/campisano/test_travisci_dockerhub_release.svg?branch=master "Continuous Integration"
 
-This project show how to setup a pipeline using travis-ci to:
-    - build and test a (C++) project using a specific docker image;
-    - build a release docker image and push it back to dockerhub;
-    - create the image-related tag and push it back to github.
+This project shows how to setup a pipeline using travis-ci to:
+- build and test a (C++) project using a specific docker image;
+- build a release docker image and push it back to dockerhub;
+- create the image-related tag and push it back to github.
 
 ## CI Rules:
 
