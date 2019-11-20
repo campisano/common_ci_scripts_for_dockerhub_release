@@ -3,8 +3,7 @@ language: minimal
 os: linux
 sudo: false
 services: docker
-git:
-  depth: 1
+git.depth: 1
 
 jobs:
   include:
@@ -40,4 +39,3 @@ jobs:
         - docker push "${DOCKER_REPOSITORY}:${RELEASE_TAG}" || travis_terminate 1
         - docker tag "${DOCKER_REPOSITORY}:${RELEASE_TAG}" "${DOCKER_REPOSITORY}:${PROJECT_NAME}-latest" || travis_terminate 1
         - docker push "${DOCKER_REPOSITORY}:${PROJECT_NAME}-latest" || travis_terminate 1
-        # if error, remove remote new tag, free version
