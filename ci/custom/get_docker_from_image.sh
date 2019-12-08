@@ -1,5 +1,5 @@
 #!/bin/bash
 
-set -o errexit -o pipefail
+set -o errtrace -o errexit -o nounset -o pipefail
 
 echo debian:stretch-slim

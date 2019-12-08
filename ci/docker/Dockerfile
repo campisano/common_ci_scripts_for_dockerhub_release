@@ -1,4 +1,5 @@
-FROM debian:stretch-slim
+ARG FROM_IMAGE
+FROM $FROM_IMAGE
 
 RUN apt-get -q update
 RUN apt-get -q -y install libssl1.0.2 libcurl3

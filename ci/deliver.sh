@@ -10,7 +10,7 @@ fn_abort()
 }
 
 trap fn_abort ERR
-set -o errtrace -o pipefail
+set -o errtrace -o errexit -o nounset -o pipefail
 
 # vars
 export DOCKER_FROM_IMAGE=$(./ci/custom/get_docker_from_image.sh)
@@ -30,7 +30,7 @@ git push origin tag ${RELEASE_TAG}
 
 # build docker image
 ./ci/build_and_test.sh
-docker build -t "${DOCKER_REPOSITORY}:${RELEASE_TAG}" -f ci/docker/Dockerfile .
+docker build --build-arg "FROM_IMAGE=${DOCKER_FROM_IMAGE=}" --tag "${DOCKER_REPOSITORY}:${RELEASE_TAG}" --file ci/docker/Dockerfile .
 
 # push image tags
 docker pull "${DOCKER_REPOSITORY}:${RELEASE_TAG}" &> /dev/null && echo "ERROR: docker image \"${DOCKER_REPOSITORY}:${RELEASE_TAG}\" already exists" && exit 1
