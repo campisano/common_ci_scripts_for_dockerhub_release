@@ -33,7 +33,7 @@ git push origin tag ${RELEASE_TAG}
 docker build -t "${DOCKER_REPOSITORY}:${RELEASE_TAG}" -f ci/docker/Dockerfile .
 
 # push image tags
-docker pull "${DOCKER_REPOSITORY}:${RELEASE_TAG}" &> /dev/null && echo "docker image already exists" && exit 1
+docker pull "${DOCKER_REPOSITORY}:${RELEASE_TAG}" &> /dev/null && echo "ERROR: docker image \"${DOCKER_REPOSITORY}:${RELEASE_TAG}\" already exists" && exit 1
 docker push "${DOCKER_REPOSITORY}:${RELEASE_TAG}"
 docker tag "${DOCKER_REPOSITORY}:${RELEASE_TAG}" "${DOCKER_REPOSITORY}:${PROJECT_NAME}-latest"
 docker push "${DOCKER_REPOSITORY}:${PROJECT_NAME}-latest"

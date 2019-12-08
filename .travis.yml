@@ -2,8 +2,6 @@ dist: xenial
 language: shell
 os: linux
 services: docker
-git:
-  depth: 1
 if: tag IS blank
 
 jobs:
