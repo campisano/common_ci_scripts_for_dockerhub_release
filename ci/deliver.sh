@@ -1,5 +1,15 @@
 #!/bin/bash
 
+COMMAND=$0
+
+fn_abort()
+{
+    ERRCODE=$?
+    echo >&2 "$COMMAND error $ERRCODE executing \"$(eval echo $BASH_COMMAND)\" at line ${BASH_LINENO[0]}"
+    exit $ERRCODE
+}
+
+trap fn_abort ERR
 set -o errtrace -o pipefail
 
 # vars
@@ -15,14 +25,15 @@ echo "${DOCKER_PASSWORD}" | docker login --username "${DOCKER_USERNAME}" --passw
 git config user.name "${GIT_USERNAME}"
 git config user.email "${GIT_USEREMAIL}"
 git remote set-url origin "https://${GIT_USERNAME}:${GIT_PASSWORD}@${GIT_REPOSITORY_URL}"
-git fetch --tag
-git tag ${RELEASE_TAG} && git push origin tag ${RELEASE_TAG}
+git tag ${RELEASE_TAG}
+git push origin tag ${RELEASE_TAG}
 
 # build docker image
 ./ci/build_and_test.sh
 docker build -t "${DOCKER_REPOSITORY}:${RELEASE_TAG}" -f ci/docker/Dockerfile .
 
 # push image tags
+docker pull "${DOCKER_REPOSITORY}:${RELEASE_TAG}" &> /dev/null && echo "docker image already exists" && exit 1
 docker push "${DOCKER_REPOSITORY}:${RELEASE_TAG}"
 docker tag "${DOCKER_REPOSITORY}:${RELEASE_TAG}" "${DOCKER_REPOSITORY}:${PROJECT_NAME}-latest"
 docker push "${DOCKER_REPOSITORY}:${PROJECT_NAME}-latest"

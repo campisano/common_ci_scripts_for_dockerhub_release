@@ -1,5 +1,15 @@
 #!/bin/bash
 
+COMMAND=$0
+
+fn_abort()
+{
+    ERRCODE=$?
+    echo >&2 "$COMMAND error $ERRCODE executing \"$(eval echo $BASH_COMMAND)\" at line ${BASH_LINENO[0]}"
+    exit $ERRCODE
+}
+
+trap fn_abort ERR
 set -o errtrace -o pipefail
 
 # vars
