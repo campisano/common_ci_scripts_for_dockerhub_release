@@ -23,7 +23,7 @@ echo "${DOCKER_PASSWORD}" | docker login --username "${DOCKER_USERNAME}" --passw
 
 # push new tag, locking version and grant git write access
 git config user.name "${GIT_USERNAME}"
-git config user.email "${GIT_USEREMAIL}"
+git config user.email "${GIT_EMAIL}"
 git remote set-url origin "https://${GIT_USERNAME}:${GIT_PASSWORD}@${GIT_REPOSITORY_URL}"
 git tag ${RELEASE_TAG}
 git push origin tag ${RELEASE_TAG}
