@@ -2,4 +2,6 @@
 
 set -o errexit -o nounset -o pipefail
 
-echo test_travisci_dockerhub_release
+NAME="test_travisci_dockerhub_release"
+
+echo "${NAME}"
