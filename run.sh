@@ -6,7 +6,7 @@ APP_PATH="./build/${TARGET}/2048"
 
 if test -z "${TARGET}"
 then
-    echo "Usage: "`basename $0`" <debug|release> [test]" >&2
+    echo "Usage: "`basename $0`" <release|debug> [test]" >&2
     exit 1
 fi
 
