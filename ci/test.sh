@@ -11,10 +11,9 @@ export DOCKER_FROM_IMAGE=$(./ci/custom/get_docker_from_image.sh)
 # get image
 docker pull "${DOCKER_FROM_IMAGE}"
 
-# coverage code isolatedly
+# test code isolatedly
 docker run \
-       --env COVERAGE_TOKEN \
        --mount type=bind,source="$(pwd)",target=/repository \
        "${DOCKER_FROM_IMAGE}" \
        /bin/bash -c \
-       'cd /repository; ./ci/custom/internal_coverage.sh ${COVERAGE_TOKEN}'
+       'cd /repository; ./ci/custom/internal_test.sh'
