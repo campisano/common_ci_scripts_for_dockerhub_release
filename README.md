@@ -1,22 +1,28 @@
-# Sample CI/CD project with dockerhub integration [![Build Status][ci_img]][ci_link]
+[![Build Status][ci_img]][ci_link]
+[![Test Coverage][cov_img][cov_link]
 
 [ci_link]: https://travis-ci.org/campisano/test_travisci_dockerhub_release
 [ci_img]: https://travis-ci.org/campisano/test_travisci_dockerhub_release.svg?branch=master "Continuous Integration"
+[cov_link]: https://codecov.io/gh/campisano/test_travisci_dockerhub_release
+[cov_img]: https://codecov.io/gh/campisano/test_travisci_dockerhub_release/branch/master/graph/badge.svg
+
+# Sample CI/CD project with dockerhub integration
 
 This project shows how to setup a pipeline using travis-ci to:
 - build and test a (C++) project using a specific docker image;
-- build a release docker image and push it back to dockerhub;
-- create the image-related tag and push it back to github.
+- produce and send coverage info to codecov.io;
+- build a release docker image and push it back to hub.docker.com;
+- create the image-related tag and push it back to github.com.
 
 
 
 ## CI Rules:
 
 1) not-master branch:
-    - build and test
+    - build, test, coverage
 0) master branch:
     - check no git tag and create new one
-    - build and test
+    - build, test, coverage
     - build docker image
     - push docker image
 
@@ -25,6 +31,7 @@ This project shows how to setup a pipeline using travis-ci to:
 ## CI requirements:
     - docker repository (dockerhub) push access
     - git remote (github) push access
+    - codecov access
 
 
 
@@ -38,6 +45,7 @@ This project shows how to setup a pipeline using travis-ci to:
     - GIT_PASSWORD
     - GIT_EMAIL
     - GIT_REPOSITORY_URL
+    - CODECOV_TOKEN
 
 2) edit the scripts in the `./ci/custom` folder
 
