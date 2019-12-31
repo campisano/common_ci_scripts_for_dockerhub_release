@@ -2,9 +2,9 @@
 [![Test Coverage][cov_img]][cov_link]
 
 [ci_link]: https://travis-ci.org/campisano/test_travisci_dockerhub_release
-[ci_img]: https://travis-ci.org/campisano/test_travisci_dockerhub_release.svg?branch=master "Continuous Integration"
+[ci_img]: https://travis-ci.org/campisano/test_travisci_dockerhub_release.svg?branch=master "Build Status"
 [cov_link]: https://codecov.io/gh/campisano/test_travisci_dockerhub_release
-[cov_img]: https://codecov.io/gh/campisano/test_travisci_dockerhub_release/branch/master/graph/badge.svg
+[cov_img]: https://codecov.io/gh/campisano/test_travisci_dockerhub_release/branch/master/graph/badge.svg "Test Coverage"
 
 # Sample CI/CD project with dockerhub integration
 
