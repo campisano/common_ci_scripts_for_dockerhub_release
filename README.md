@@ -1,13 +1,8 @@
-[![Build Status][ci_img]][ci_link]
-[![Test Coverage][cov_img]][cov_link]
-[![Code Quality][cq_img]][cq_link]
+[![Build Status](https://travis-ci.org/campisano/test_travisci_dockerhub_release.svg?branch=master "Build Status")](https://travis-ci.org/campisano/test_travisci_dockerhub_release)
+[![Test Coverage](https://codecov.io/gh/campisano/test_travisci_dockerhub_release/branch/master/graph/badge.svg "Test Coverage")](https://codecov.io/gh/campisano/test_travisci_dockerhub_release)
+[![Code Quality](https://img.shields.io/lgtm/grade/java/g/campisano/test_travisci_dockerhub_release.svg "Code Quality")](https://lgtm.com/projects/g/campisano/test_travisci_dockerhub_release/context:java)
 
-[ci_link]: https://travis-ci.org/campisano/test_travisci_dockerhub_release
-[ci_img]: https://travis-ci.org/campisano/test_travisci_dockerhub_release.svg?branch=master "Build Status"
-[cov_link]: https://codecov.io/gh/campisano/test_travisci_dockerhub_release
-[cov_img]: https://codecov.io/gh/campisano/test_travisci_dockerhub_release/branch/master/graph/badge.svg "Test Coverage"
-[cq_link]: https://lgtm.com/projects/g/campisano/test_travisci_dockerhub_release/context:cpp
-[cq_img]: https://img.shields.io/lgtm/grade/cpp/g/campisano/test_travisci_dockerhub_release.svg?logo=lgtm&logoWidth=18 "Code Quality"
+# Test Java Rest JPA with CI and Coverage
 
 # Sample CI/CD project with dockerhub integration
 
