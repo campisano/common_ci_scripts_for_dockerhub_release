@@ -2,8 +2,6 @@
 [![Test Coverage](https://codecov.io/gh/campisano/test_travisci_dockerhub_release/branch/master/graph/badge.svg "Test Coverage")](https://codecov.io/gh/campisano/test_travisci_dockerhub_release)
 [![Code Quality](https://img.shields.io/lgtm/grade/cpp/g/campisano/test_travisci_dockerhub_release.svg "Code Quality")](https://lgtm.com/projects/g/campisano/test_travisci_dockerhub_release/context:cpp)
 
-# Test Java Rest JPA with CI and Coverage
-
 # Sample CI/CD project with dockerhub integration
 
 This project shows how to setup a pipeline using travis-ci to:
