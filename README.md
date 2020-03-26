@@ -1,6 +1,7 @@
 [![Build Status](https://travis-ci.org/campisano/test_travisci_dockerhub_release.svg?branch=master "Build Status")](https://travis-ci.org/campisano/test_travisci_dockerhub_release)
 [![Test Coverage](https://codecov.io/gh/campisano/test_travisci_dockerhub_release/branch/master/graph/badge.svg "Test Coverage")](https://codecov.io/gh/campisano/test_travisci_dockerhub_release)
 [![Code Quality](https://img.shields.io/lgtm/grade/cpp/g/campisano/test_travisci_dockerhub_release.svg "Code Quality")](https://lgtm.com/projects/g/campisano/test_travisci_dockerhub_release/context:cpp)
+[![Docker Hub](https://img.shields.io/docker/image-size/riccardocampisano/public/test_travisci_dockerhub_release-latest?label=test_travisci_dockerhub_release-latest&logo=docker)](https://hub.docker.com/r/riccardocampisano/public/tags?name=test_travisci_dockerhub_release)
 
 # Sample CI/CD project with dockerhub integration
 

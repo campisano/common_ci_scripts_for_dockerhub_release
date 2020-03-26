@@ -7,6 +7,8 @@ REQS=""
 type -P docker &>/dev/null || REQS="${REQS} docker"
 type -P git &>/dev/null || REQS="${REQS} git"
 
+REQS="${REQS} `./ci/custom/get_ci_requisites.sh`"
+
 if test -n "${REQS}"
 then
     sudo apt-get -qq -y update
