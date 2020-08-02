@@ -13,7 +13,8 @@ docker pull "${DOCKER_IMAGE}"
 
 # test code isolatedly
 docker run \
-       --mount type=bind,source="$(pwd)",target=/repository \
+       --mount type=bind,source="$(pwd)",target=/srv/repository \
+       --mount type=bind,source="$(pwd)/.custom_cache/var/cache/apt/archives",target=/var/cache/apt/archives \
        "${DOCKER_IMAGE}" \
        /bin/bash -c \
-       'cd /repository; ./ci/custom/internal_test.sh'
+       'cd /srv/repository; ./ci/custom/internal_test.sh'

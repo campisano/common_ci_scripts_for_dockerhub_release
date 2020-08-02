@@ -2,6 +2,11 @@ dist: xenial
 language: shell
 os: linux
 services: docker
+
+cache:
+  directories:
+  - .custom_cache
+
 if: tag IS blank
 
 jobs:
