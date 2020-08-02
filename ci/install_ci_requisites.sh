@@ -13,6 +13,7 @@ REQS="${REQS} `./ci/custom/get_ci_requisites.sh`"
 
 if test -n "${REQS}"
 then
+    export DEBIAN_FRONTEND=noninteractive
     sudo apt-get -qq -y update
     sudo apt-get -qq -y install --no-install-recommends apt-utils > /dev/null
     sudo apt-get -qq -y install ${REQS} > /dev/null
