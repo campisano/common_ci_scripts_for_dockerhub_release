@@ -2,6 +2,8 @@
 
 set -o errexit -o nounset -o pipefail
 
+mkdir -p ./.custom_cache/var/cache/apt/archives
+
 REQS=""
 
 type -P docker &>/dev/null || REQS="${REQS} docker"
