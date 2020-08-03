@@ -15,7 +15,7 @@ docker pull "${DOCKER_IMAGE}"
 docker run \
        --env COVERAGE_TOKEN \
        --mount type=bind,source="$(pwd)",target=/srv/repository \
-       --mount type=bind,source="$(pwd)/.custom_cache/var/cache/apt/archives",target=/var/cache/apt/archives \
+       --mount type=bind,source="${HOME}/.custom_cache/var/cache/apt/archives",target=/var/cache/apt/archives \
        "${DOCKER_IMAGE}" \
        /bin/bash -c \
        'cd /srv/repository; ./ci/custom/internal_coverage.sh ${COVERAGE_TOKEN}'

@@ -5,7 +5,9 @@ services: docker
 
 cache:
   directories:
-  - .custom_cache
+  - ${HOME}/.custom_cache
+before_cache:
+  - sudo chown -R ${USER} ${HOME}/.custom_cache
 
 if: tag IS blank
 
@@ -18,7 +20,6 @@ jobs:
         - ./ci/build.sh
         - ./ci/test.sh
         - ./ci/coverage.sh
-        - sudo chown -R ${USER} .custom_cache
     - stage: "Deliver"
       if: branch = master
       install: skip
@@ -27,4 +28,3 @@ jobs:
         - ./ci/test.sh
         - ./ci/deliver.sh
         - ./ci/coverage.sh
-        - sudo chown -R ${USER} .custom_cache

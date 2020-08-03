@@ -2,7 +2,7 @@
 
 set -o errexit -o nounset -o pipefail
 
-mkdir -p ./.custom_cache/var/cache/apt/archives
+mkdir -p ${HOME}/.custom_cache/var/cache/apt/archives
 
 REQS=""
 
