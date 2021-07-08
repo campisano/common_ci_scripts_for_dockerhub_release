@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/campisano/test_travisci_dockerhub_release.svg?branch=master "Build Status")](https://travis-ci.org/campisano/test_travisci_dockerhub_release)
+[![Build Status](https://api.travis-ci.com/campisano/test_travisci_dockerhub_release.svg?branch=master "Build Status")](https://travis-ci.com/campisano/test_travisci_dockerhub_release)
 [![Test Coverage](https://codecov.io/gh/campisano/test_travisci_dockerhub_release/branch/master/graph/badge.svg "Test Coverage")](https://codecov.io/gh/campisano/test_travisci_dockerhub_release)
 [![Code Quality](https://img.shields.io/lgtm/grade/cpp/g/campisano/test_travisci_dockerhub_release.svg "Code Quality")](https://lgtm.com/projects/g/campisano/test_travisci_dockerhub_release/context:cpp)
 [![Sonar Coverage](https://sonarcloud.io/api/project_badges/measure?project=campisano/test_travisci_dockerhub_release&metric=coverage)](https://sonarcloud.io/dashboard?id=campisano/test_travisci_dockerhub_release)
