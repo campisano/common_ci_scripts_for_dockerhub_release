@@ -48,7 +48,7 @@ This project shows how to setup a pipeline using travis-ci to:
     - GIT_REPOSITORY_URL
     - SONAR_ORGANIZATION
     - SONAR_TOKEN
-    - SONAR_PROJECT_KEY
+    - SONAR_PROJECT
     - COVERAGE_TOKEN
 
 2) edit the scripts in the `./ci/custom` folder

@@ -4,7 +4,7 @@ set -x -o errexit -o nounset -o pipefail
 
 SONAR_ORGANIZATION="$1"
 SONAR_TOKEN="$2"
-SONAR_PROJECT_KEY="$3"
+SONAR_PROJECT="$3"
 
 export DEBIAN_FRONTEND=noninteractive
 
@@ -44,7 +44,7 @@ export SONAR_USER_HOME=/srv/cache/sonar
 /srv/sonar/sonar-scanner-4.4.0.2170-linux/bin/sonar-scanner \
     -Dsonar.host.url=https://sonarcloud.io \
     -Dsonar.organization=${SONAR_ORGANIZATION} \
-    -Dsonar.projectKey=${SONAR_PROJECT_KEY} \
+    -Dsonar.projectKey=${SONAR_PROJECT} \
     -Dsonar.scm.provider=git \
     -Dsonar.sources=src \
     -Dsonar.sourceEncoding=UTF-8 \
