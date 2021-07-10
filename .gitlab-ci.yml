@@ -13,18 +13,14 @@ stages:
 
 Test:
   stage: test
-
   only:
     - branches
-
   except:
     - master
-
   cache:
     key: custom-cache-$CI_COMMIT_REF_SLUG
     paths:
       - ./.custom-cache
-
   script:
     - ./ci/build.sh
     - ./ci/test.sh
@@ -32,10 +28,12 @@ Test:
 
 Deliver:
   stage: deliver
-
   only:
     - master
-
+  cache:
+    key: custom-cache-$CI_COMMIT_REF_SLUG
+    paths:
+      - ./.custom-cache
   script:
     - ./ci/build.sh
     - ./ci/test.sh
