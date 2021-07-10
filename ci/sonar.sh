@@ -9,14 +9,12 @@ export DOCKER_IMAGE=$(./ci/custom/get_docker_image_build.sh)
 docker pull "${DOCKER_IMAGE}"
 
 # build code and run sonar isolatedly
-docker run \
+docker run --rm \
        --env SONAR_ORGANIZATION \
        --env SONAR_TOKEN \
        --env SONAR_PROJECT \
        --volume /var/run/docker.sock:/var/run/docker.sock \
        --mount type=bind,source="$(pwd)",target=/srv/repository \
-       --mount type=bind,source="${HOME}/.custom_cache/srv/cache",target=/srv/cache \
-       --mount type=bind,source="${HOME}/.custom_cache/var/cache/apt/archives",target=/var/cache/apt/archives \
        "${DOCKER_IMAGE}" \
        /bin/bash -c \
        'cd /srv/repository; ./ci/custom/internal_sonar.sh "${SONAR_ORGANIZATION}" "${SONAR_TOKEN}" "${SONAR_PROJECT}"'

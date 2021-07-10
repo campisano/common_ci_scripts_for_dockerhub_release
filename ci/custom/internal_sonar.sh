@@ -8,23 +8,28 @@ SONAR_PROJECT="$3"
 
 export DEBIAN_FRONTEND=noninteractive
 
+mkdir -p .custom_cache/var/cache/apt
+cp -aT .custom_cache/var/cache/apt /var/cache/apt
 rm -f /etc/apt/apt.conf.d/docker*
+
 apt-get -qq -y update
 apt-get -qq -y install --no-install-recommends apt-utils > /dev/null
 apt-get -qq -y install --no-install-recommends libssl1.0.2 libcurl3 > /dev/null
 apt-get -qq -y install --no-install-recommends gcc g++ make cmake libssl1.0-dev libcurl4-openssl-dev > /dev/null
 apt-get -qq -y install --no-install-recommends wget unzip > /dev/null
 
-mkdir -p /srv/sonar
-wget -P /srv/cache -c -nv --no-check-certificate https://sonarcloud.io/static/cpp/build-wrapper-linux-x86.zip
-unzip -d /srv/sonar -q -n /srv/cache/build-wrapper-linux-x86.zip
-wget -P /srv/cache -c -nv --no-check-certificate https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.4.0.2170-linux.zip
-unzip -d /srv/sonar -q -n /srv/cache/sonar-scanner-cli-4.4.0.2170-linux.zip
+mv -n /var/cache/apt/* .custom_cache/var/cache/apt/
+
+mkdir -p .custom_cache/srv/sonar
+wget -P .custom_cache/srv/cache -c -nv --no-check-certificate https://sonarcloud.io/static/cpp/build-wrapper-linux-x86.zip
+unzip -d .custom_cache/srv/sonar -q -n .custom_cache/srv/cache/build-wrapper-linux-x86.zip
+wget -P .custom_cache/srv/cache -c -nv --no-check-certificate https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.4.0.2170-linux.zip
+unzip -d .custom_cache/srv/sonar -q -n .custom_cache/srv/cache/sonar-scanner-cli-4.4.0.2170-linux.zip
 
 make -e debug
 make -e clean
 
-/srv/sonar/build-wrapper-linux-x86/build-wrapper-linux-x86-64 --out-dir bw-output make -e debug
+.custom_cache/srv/sonar/build-wrapper-linux-x86/build-wrapper-linux-x86-64 --out-dir bw-output make -e debug
 
 
 
@@ -40,8 +45,8 @@ cd ..
 
 
 export SONAR_TOKEN
-export SONAR_USER_HOME=/srv/cache/sonar
-/srv/sonar/sonar-scanner-4.4.0.2170-linux/bin/sonar-scanner \
+export SONAR_USER_HOME=.custom_cache/srv/cache/sonar
+.custom_cache/srv/sonar/sonar-scanner-4.4.0.2170-linux/bin/sonar-scanner \
     -Dsonar.host.url=https://sonarcloud.io \
     -Dsonar.organization=${SONAR_ORGANIZATION} \
     -Dsonar.projectKey=${SONAR_PROJECT} \
