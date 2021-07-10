@@ -87,16 +87,20 @@ This project shows how to setup a pipeline using CI services like GitLab or Trav
 
 ## Screenshots:
 
-* required pipeline env vars
+
+
+### Required pipeline env vars
 
 ![Alt text](/doc/README.md/pipeline-env-vars.png?raw=true "pipeline env vars")
 
 
-* resulting pipeline builds
+
+### Resulting pipeline builds
 
 ![Alt text](/doc/README.md/pipeline-builds.png?raw=true "pipeline builds")
 
 
-* resulting dockerhub images
+
+### Resulting dockerhub images
 
 ![Alt text](/doc/README.md/dockerhub-images.png?raw=true "dockerhub images")
