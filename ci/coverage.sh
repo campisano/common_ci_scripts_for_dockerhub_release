@@ -3,16 +3,18 @@
 set -x -o errexit -o nounset -o pipefail
 
 # vars
-export DOCKER_IMAGE=$(./ci/custom/get_docker_image_run.sh)
+export DOCKER_IMAGE=$(./ci/custom/get_docker_image_build.sh)
 
 # get image
 docker pull "${DOCKER_IMAGE}"
 
-# coverage code isolatedly
+# build code and run sonar isolatedly
 docker run --rm \
-       --env COVERAGE_TOKEN \
+       --env SONAR_ORGANIZATION \
+       --env SONAR_TOKEN \
+       --env SONAR_PROJECT \
        --volume /var/run/docker.sock:/var/run/docker.sock \
        --mount type=bind,source="$(pwd)",target=/srv/repository \
-        "${DOCKER_IMAGE}" \
+       "${DOCKER_IMAGE}" \
        /bin/bash -c \
-       'cd /srv/repository; ./ci/custom/internal_coverage.sh "${COVERAGE_TOKEN}"'
+       'cd /srv/repository; ./ci/custom/internal_sonar.sh "${SONAR_ORGANIZATION}" "${SONAR_TOKEN}" "${SONAR_PROJECT}"'

@@ -29,7 +29,6 @@ Test:
     - ./ci/build.sh
     - ./ci/test.sh
     - ./ci/coverage.sh
-    - ./ci/sonar.sh
 
 Deliver:
   stage: deliver
@@ -42,4 +41,3 @@ Deliver:
     - ./ci/test.sh
     - ./ci/deliver.sh
     - ./ci/coverage.sh
-    - ./ci/sonar.sh
