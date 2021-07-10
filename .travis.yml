@@ -5,7 +5,7 @@ services: docker
 
 cache:
   directories:
-  - ./.custom_cache
+  - .custom_cache
 before_cache:
   - sudo chown -R ${USER} .custom_cache
 

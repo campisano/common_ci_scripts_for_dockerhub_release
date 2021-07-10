@@ -5,7 +5,7 @@ services:
 
 before_script:
   - apk add --no-cache bash git
-  - mkdir -m 777 -p ./.custom_cache
+  - mkdir -m 777 -p .custom_cache
 
 stages:
   - test
@@ -20,7 +20,7 @@ Test:
   cache:
     key: custom-cache-$CI_COMMIT_REF_SLUG
     paths:
-      - ./.custom-cache
+      - .custom-cache
   script:
     - ./ci/build.sh
     - ./ci/test.sh
@@ -33,7 +33,7 @@ Deliver:
   cache:
     key: custom-cache-$CI_COMMIT_REF_SLUG
     paths:
-      - ./.custom-cache
+      - .custom-cache
   script:
     - ./ci/build.sh
     - ./ci/test.sh
