@@ -2,6 +2,6 @@
 
 set -o errexit -o nounset -o pipefail
 
-NAME="test_travisci_dockerhub_release"
+NAME="common_ci_scripts_for_dockerhub_release"
 
 echo "${NAME}"
