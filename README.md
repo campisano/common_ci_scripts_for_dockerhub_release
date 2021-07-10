@@ -1,18 +1,17 @@
-[![Build Status](https://api.travis-ci.com/campisano/test_travisci_dockerhub_release.svg?branch=master "Build Status")](https://travis-ci.com/campisano/test_travisci_dockerhub_release)
-[![Test Coverage](https://codecov.io/gh/campisano/test_travisci_dockerhub_release/branch/master/graph/badge.svg "Test Coverage")](https://codecov.io/gh/campisano/test_travisci_dockerhub_release)
-[![Code Quality](https://img.shields.io/lgtm/grade/cpp/g/campisano/test_travisci_dockerhub_release.svg "Code Quality")](https://lgtm.com/projects/g/campisano/test_travisci_dockerhub_release/context:cpp)
-[![Sonar Coverage](https://sonarcloud.io/api/project_badges/measure?project=campisano/test_travisci_dockerhub_release&metric=coverage)](https://sonarcloud.io/dashboard?id=campisano/test_travisci_dockerhub_release)
-[![Sonar Quality Gate](https://sonarcloud.io/api/project_badges/measure?project=campisano/test_travisci_dockerhub_release&metric=alert_status)](https://sonarcloud.io/dashboard?id=campisano/test_travisci_dockerhub_release)
-
-[![Docker Hub](https://img.shields.io/docker/image-size/riccardocampisano/public/test_travisci_dockerhub_release-latest?label=test_travisci_dockerhub_release-latest&logo=docker)](https://hub.docker.com/r/riccardocampisano/public/tags?name=test_travisci_dockerhub_release)
+[![Build Status](https://gitlab.com/campisano/common_ci_scripts_for_dockerhub_release/badges/master/pipeline.svg "Build Status")](https://gitlab.com/campisano/common_ci_scripts_for_dockerhub_release)
+[![Test Coverage](https://codecov.io/gh/campisano/common_ci_scripts_for_dockerhub_release/branch/master/graph/badge.svg "Test Coverage")](https://codecov.io/gh/campisano/common_ci_scripts_for_dockerhub_release)
+[![Code Quality](https://img.shields.io/lgtm/grade/cpp/g/campisano/common_ci_scripts_for_dockerhub_release.svg "Code Quality")](https://lgtm.com/projects/g/campisano/common_ci_scripts_for_dockerhub_release/context:cpp)
+[![Sonar Coverage](https://sonarcloud.io/api/project_badges/measure?project=common_ci_scripts_for_dockerhub_release&metric=coverage "Sonar Coverage")](https://sonarcloud.io/dashboard?id=common_ci_scripts_for_dockerhub_release)
+[![Sonar Maintainability](https://sonarcloud.io/api/project_badges/measure?project=common_ci_scripts_for_dockerhub_release&metric=sqale_rating "Sonar Maintainability")](https://sonarcloud.io/dashboard?id=common_ci_scripts_for_dockerhub_release)
+[![Docker Image](https://img.shields.io/docker/image-size/riccardocampisano/public/common_ci_scripts_for_dockerhub_release-latest?label=common_ci_scripts_for_dockerhub_release-latest&logo=docker "Docker Image")](https://hub.docker.com/r/riccardocampisano/public/tags?name=common_ci_scripts_for_dockerhub_release)
 
 # Sample CI/CD project with dockerhub integration
 
-This project shows how to setup a pipeline using travis-ci to:
-- build and test a (C++) project using a specific docker image;
+This project shows how to setup a pipeline using CI services like GitLab or travis-ci to:
+- build and test a (C++/Java/etc) project using a specific docker image;
 - produce and send coverage info to sonarcloud.io and codecov.io;
-- build a release docker image and push it back to hub.docker.com;
-- create the image-related tag and push it back to github.com.
+- build a docker image, tag and push it to hub.docker.com;
+- create the image-related git tag and push it back to your repository.
 
 
 
@@ -21,16 +20,15 @@ This project shows how to setup a pipeline using travis-ci to:
 1) not-master branch:
     - build, test, coverage
 0) master branch:
-    - check no git tag and create new one
     - build, test, coverage
-    - build docker image
-    - push docker image
+    - ensure uniqueness and push a new git tag
+    - build and pus docker image
 
 
 
 ## CI requirements:
     - docker repository (hub.docker.com) push access
-    - git remote (github.com) push access
+    - git remote (gitlab.com) push access
     - sonarcloud.io bind
     - codecov.io access
 
@@ -38,7 +36,7 @@ This project shows how to setup a pipeline using travis-ci to:
 
 ## Configuration:
 
-1) configure the follows travis-ci environment variables:
+1) configure the follows pipeline environment variables:
     - DOCKER_USERNAME
     - DOCKER_PASSWORD
     - DOCKER_REPOSITORY
@@ -57,16 +55,16 @@ This project shows how to setup a pipeline using travis-ci to:
 
 ## Screenshots:
 
-* travis-ci env vars configs
+* required pipeline env vars
 
-![Alt text](/doc/README.md/travisci-config.png?raw=true "travis-ci env vars")
-
-
-* travis-ci builds
-
-![Alt text](/doc/README.md/travisci-builds.png?raw=true "travis-ci builds")
+![Alt text](/doc/README.md/pipeline-env-vars.png?raw=true "pipeline env vars")
 
 
-* dockerhub images
+* resulting pipeline builds
+
+![Alt text](/doc/README.md/pipeline-builds.png?raw=true "pipeline builds")
+
+
+* resulting dockerhub images
 
 ![Alt text](/doc/README.md/dockerhub-images.png?raw=true "dockerhub images")
