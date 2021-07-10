@@ -17,4 +17,4 @@ docker run --rm \
        --mount type=bind,source="$(pwd)",target=/srv/repository \
        "${DOCKER_IMAGE}" \
        /bin/bash -c \
-       'cd /srv/repository; ./ci/custom/internal_sonar.sh "${SONAR_ORGANIZATION}" "${SONAR_TOKEN}" "${SONAR_PROJECT}"'
+       'cd /srv/repository; ./ci/custom/internal_coverage.sh'

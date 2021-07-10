@@ -2,10 +2,6 @@
 
 set -x -o errexit -o nounset -o pipefail
 
-SONAR_ORGANIZATION="$1"
-SONAR_TOKEN="$2"
-SONAR_PROJECT="$3"
-
 export DEBIAN_FRONTEND=noninteractive
 
 mkdir -p .custom_cache/var/cache/apt
