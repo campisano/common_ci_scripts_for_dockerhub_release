@@ -19,7 +19,7 @@ git tag ${RELEASE_TAG}
 git push origin tag ${RELEASE_TAG}
 
 # build docker image
-docker build \
+docker buildx build --platform=linux/arm64,linux/amd64  \
        --build-arg "FROM_IMAGE=${DOCKER_IMAGE_FROM=}" \
        --tag "${DOCKER_REPOSITORY}:${RELEASE_TAG}" \
        --file ci/custom/Dockerfile .
