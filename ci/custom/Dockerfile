@@ -1,7 +1,8 @@
 ARG FROM_IMAGE
 FROM $FROM_IMAGE
 
-RUN apt-get -qq -y update \
+RUN export DEBIAN_FRONTEND=noninteractive \
+    && apt-get -qq -y update \
     && apt-get -qq -y install --no-install-recommends apt-utils > /dev/null \
     && apt-get -qq -y install --no-install-recommends make libssl1.0.2 libcurl3 > /dev/null \
     && apt-get -qq clean \
