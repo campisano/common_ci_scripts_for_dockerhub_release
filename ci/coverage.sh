@@ -13,7 +13,6 @@ docker run --rm \
        --env SONAR_ORGANIZATION \
        --env SONAR_TOKEN \
        --env SONAR_PROJECT \
-       --volume /var/run/docker.sock:/var/run/docker.sock \
        --mount type=bind,source="$(pwd)/${CACHE_DIR}",target=/srv/cache \
        --mount type=bind,source="$(pwd)/${BUILD_DIR}",target=/srv/build \
        --mount type=bind,source="$(pwd)",target=/srv/repo,readonly \

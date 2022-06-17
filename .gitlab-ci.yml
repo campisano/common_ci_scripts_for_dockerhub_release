@@ -40,12 +40,12 @@ CI_arm64v8:
   extends: .common
   only: ["branches"]
   script:
-    - ./ci/build.sh
-    - ./ci/test.sh
+    - ./ci/build_arm64v8.sh
 
 CD:
   stage: delivery
   image: riccardocampisano/public:docker_buildx_master
+  #only: ["master"]
   only: ["branches"]
   needs: ["CI_amd64","CI_arm64v8"]
   before_script:
