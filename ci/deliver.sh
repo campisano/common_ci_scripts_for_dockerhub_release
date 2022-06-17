@@ -21,20 +21,9 @@ git push origin tag ${RELEASE_TAG}
 docker pull "${DOCKER_REPOSITORY}:${RELEASE_TAG}" &> /dev/null && echo "ERROR: docker image \"${DOCKER_REPOSITORY}:${RELEASE_TAG}\" already exists" && exit 1
 
 # build docker image
-for ARCH in amd64 arm64v8
-do
-    rm -rf build external
-    cp -a .ci_build_${ARCH}/build .
-    cp -a .ci_build_${ARCH}/external .
-
-    docker build \
-           --build-arg "FROM_IMAGE=${ARCH}/${DOCKER_IMAGE_FROM=}" \
-           --tag "${DOCKER_REPOSITORY}:${RELEASE_TAG}_${ARCH}" \
-           --file ci/custom/Dockerfile .
-    docker push "${DOCKER_REPOSITORY}:${RELEASE_TAG}_${ARCH}"
-done
-
-docker manifest create "${DOCKER_REPOSITORY}:${RELEASE_TAG}" --amend "${DOCKER_REPOSITORY}:${RELEASE_TAG}_amd64" --amend "${DOCKER_REPOSITORY}:${RELEASE_TAG}_arm64v8"
-docker manifest push "${DOCKER_REPOSITORY}:${RELEASE_TAG}"
-docker manifest create "${DOCKER_REPOSITORY}:${PROJECT_NAME}-latest" --amend "${DOCKER_REPOSITORY}:${RELEASE_TAG}_amd64" --amend "${DOCKER_REPOSITORY}:${RELEASE_TAG}_arm64v8"
-docker manifest push "${DOCKER_REPOSITORY}:${PROJECT_NAME}-latest"
+docker buildx create --use
+docker buildx build --push --platform=linux/amd64,linux/arm64/v8  \
+       --build-arg "FROM_IMAGE=${DOCKER_IMAGE_FROM=}" \
+       --tag "${DOCKER_REPOSITORY}:${RELEASE_TAG}" \
+       --tag "${DOCKER_REPOSITORY}:${PROJECT_NAME}-latest" \
+       --file ci/custom/Dockerfile .

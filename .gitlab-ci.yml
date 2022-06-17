@@ -45,7 +45,7 @@ CI_arm64v8:
 
 CD:
   stage: delivery
-  image: docker:latest
+  image: riccardocampisano/public:docker_buildx_master
   only: ["branches"]
   needs: ["CI_amd64","CI_arm64v8"]
   before_script:
