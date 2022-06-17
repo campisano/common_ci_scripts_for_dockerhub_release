@@ -6,17 +6,14 @@ stages:
   - delivery
   - deployment
 
-.common_packages:
-  before_script:
-    - apk add --no-cache bash git
-
-.common_deps:
+.common:
   cache:
     key: ${CACHE_DIR}-${CI_COMMIT_REF_SLUG}
     paths: ["${CACHE_DIR}"]
   artifacts:
     paths: ["${BUILD_DIR}"]
   before_script:
+    - apk add --no-cache bash
     - mkdir -m 777 -p ${CACHE_DIR} ${BUILD_DIR}
 
 CI_amd64:
@@ -26,7 +23,7 @@ CI_amd64:
     CACHE_DIR: .ci_cache_${ARCH}
     BUILD_DIR: .ci_out_${ARCH}
   image: ${ARCH}/docker:latest
-  extends: [".common_packages", ".common_deps"]
+  extends: .common
   only: ["branches"]
   script:
     - ./ci/build.sh
@@ -40,7 +37,7 @@ CI_arm64v8:
     CACHE_DIR: .ci_cache_${ARCH}
     BUILD_DIR: .ci_out_${ARCH}
   image: ${ARCH}/docker:latest
-  extends: [".common_packages", ".common_deps"]
+  extends: .common
   only: ["branches"]
   script:
     - ./ci/build.sh
@@ -49,8 +46,9 @@ CI_arm64v8:
 # CD:
 #   stage: delivery
 #   image: docker:latest
-#   extends: [".common_packages"]
 #   only: ["master"]
 #   needs: ["CI_amd64","CI_arm64v8"]
+#   before_script:
+#     - apk add --no-cache bash git
 #   script:
 #     - ./ci/deliver.sh
