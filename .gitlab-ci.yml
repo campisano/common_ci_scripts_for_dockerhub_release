@@ -21,7 +21,7 @@ CI_amd64:
   variables:
     ARCH: amd64
     CACHE_DIR: .ci_cache_${ARCH}
-    BUILD_DIR: .ci_out_${ARCH}
+    BUILD_DIR: .ci_build_${ARCH}
   image: ${ARCH}/docker:latest
   extends: .common
   only: ["branches"]
@@ -35,7 +35,7 @@ CI_arm64v8:
   variables:
     ARCH: arm64v8
     CACHE_DIR: .ci_cache_${ARCH}
-    BUILD_DIR: .ci_out_${ARCH}
+    BUILD_DIR: .ci_build_${ARCH}
   image: ${ARCH}/docker:latest
   extends: .common
   only: ["branches"]
@@ -43,12 +43,12 @@ CI_arm64v8:
     - ./ci/build.sh
     - ./ci/test.sh
 
-# CD:
-#   stage: delivery
-#   image: docker:latest
-#   only: ["master"]
-#   needs: ["CI_amd64","CI_arm64v8"]
-#   before_script:
-#     - apk add --no-cache bash git
-#   script:
-#     - ./ci/deliver.sh
+CD:
+  stage: delivery
+  image: docker:latest
+  only: ["branches"]
+  needs: ["CI_amd64","CI_arm64v8"]
+  before_script:
+    - apk add --no-cache bash git
+  script:
+    - ./ci/deliver.sh
