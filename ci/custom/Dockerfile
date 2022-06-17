@@ -18,7 +18,7 @@ COPY ./.ci_build_amd64/external /srv/app/external
 
 
 ARG FROM_IMAGE
-FROM --platform=linux/arm64/v8 $FROM_IMAGE AS linux-arm64v8
+FROM --platform=linux/arm64/v8 $FROM_IMAGE AS linux-arm64
 
 RUN export DEBIAN_FRONTEND=noninteractive \
     && apt-get -qq -y update \
@@ -37,8 +37,7 @@ COPY ./.ci_build_arm64v8/external /srv/app/external
 
 ARG TARGETOS
 ARG TARGETARCH
-ARG TARGETVARIANT
-FROM ${TARGETOS}-${TARGETARCH}${TARGETVARIANT} as final
+FROM ${TARGETOS}-${TARGETARCH} as final
 
 WORKDIR /srv/app
 CMD ["./run.sh", "release"]
