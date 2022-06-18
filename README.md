@@ -6,7 +6,7 @@
 # Sample CI/CD project with dockerhub integration
 
 This project shows how to setup a pipeline using CI services like GitLab or Travis CI to:
-- build and test a (C++/Java/etc) project using specific docker images;
+- build and test a (C++/Java/etc) multiarch (amd64/arm64) project using specific docker images;
 - produce and send coverage info to sonarcloud.io;
 - build a docker image, tag and push it to hub.docker.com;
 - create the git tag related with the build and push it back to your repository.
